@@ -1,4 +1,4 @@
-#Soundscape Sandbox
+# Soundscape Sandbox
 
 To run this project, you'll need to install Node.js and npm: https://nodejs.org/en/download/
 
