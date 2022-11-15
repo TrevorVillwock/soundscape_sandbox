@@ -73,6 +73,7 @@ function stopYellowSquare() {
     console.log("yellow stop");
 }
 
-Tone.start();
-
-Tone.Transport.start();
+window.onload = () => {
+    Tone.start();
+    Tone.Transport.start();
+}

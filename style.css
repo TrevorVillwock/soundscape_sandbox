@@ -2,23 +2,40 @@
     height: 300px;
     width: 300px;
     background-color: rgb(161, 224, 232);
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .green-square {
     height: 300px;
     width: 300px;
     background-color: rgb(165, 232, 161);
+    position: absolute;
+    top: 0px;
+    left: 300px;
 }
 
 .red-square {
     height: 300px;
     width: 300px;
     background-color: rgb(232, 161, 161);
+    position: absolute;
+    top: 300px;
+    left: 0px;
 }
 
 .yellow-square {
     height: 300px;
     width: 300px;
     background-color: rgb(226, 232, 161);
+    position: absolute;
+    top: 300px;
+    left: 300px;
+}
+
+body {
+    position: relative;
+    display: flex;
 }
 
