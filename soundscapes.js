@@ -26,49 +26,50 @@ let yellowSquare = new Tone.Synth({
 
 function playBlueSquare() {
     //blueSquare.start();
-    blueSquare.triggerAttackRelease("G2", "4n");
+    //blueSquare.triggerAttackRelease("G2", "4n");
+    blueSquare.triggerAttack("G2");
     console.log("blue start");
 }
 
 function playGreenSquare() {
     //greenSquare.start();
-    greenSquare.triggerAttackRelease("D3", "4n");
+    greenSquare.triggerAttack("D3");
     console.log("green start");
 }
 
 function playRedSquare() {
     //redSquare.start();
-    redSquare.triggerAttackRelease("B3", "4n");
+    redSquare.triggerAttack("B3");
     console.log("red start");
 }
 
 function playYellowSquare() {
     //yellowSquare.start();
-    yellowSquare.triggerAttackRelease("F4", "4n");
+    yellowSquare.triggerAttack("F4");
     console.log("yellow start");
 }
 
 function stopBlueSquare() {
-    //blueSquare.triggerRelease();
+    blueSquare.triggerRelease();
     //blueSquare.stop();
     console.log("blue stop");
 }
 
 function stopGreenSquare() {
     //greenSquare.stop();
-    //greenSquare.triggerRelease();
+    greenSquare.triggerRelease();
     console.log("green stop");
 }
 
 function stopRedSquare() {
     //redSquare.stop();
-    //redSquare.triggerRelease();
+    redSquare.triggerRelease();
     console.log("red stop");
 }
 
 function stopYellowSquare() {
     //yellowSquare.stop();
-    //yellowSquare.triggerRelease();
+    yellowSquare.triggerRelease();
     console.log("yellow stop");
 }
 
