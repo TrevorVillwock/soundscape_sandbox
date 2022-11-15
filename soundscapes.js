@@ -1,27 +1,33 @@
-//let reverb = new Tone.Reverb(2000).toDestination();
+let reverb = new Tone.Reverb(10).toMaster();
+
+reverb.generate();
 
 let blueSquare = new Tone.Synth({
     frequency: 100, 
     waveform: "sine",
-    volume: 0.5}).toDestination();
-    //connect(reverb);
+    volume: 0.5}).connect(reverb);
+    //toDestination();
+    //;
 
 let greenSquare = new Tone.Synth({
     frequency: 300, 
     waveform: "sine",
-    volume: 0.1}).toDestination();
+    volume: 0.1}).connect(reverb);
+    //toDestination();
     //connect(reverb);
 
 let redSquare = new Tone.Synth({
     frequency: 400, 
     waveform: "sine",
-    volume: 0.1}).toDestination();
+    volume: 0.1}).connect(reverb);
+    //toDestination();
     //connect(reverb);
 
 let yellowSquare = new Tone.Synth({
     frequency: 700, 
     waveform: "sine",
-    volume: 0.05}).toDestination();
+    volume: 0.05}).connect(reverb);
+    //toDestination();
     //connect(reverb);
 
 function playBlueSquare() {
