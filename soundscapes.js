@@ -1,15 +1,20 @@
-// For some reason the Tone.Reverb object has toMaster() instead of toDestination()
-let reverb = new Tone.Reverb().toMaster();
+// For some reason the Tone.Reverb object only has toMaster() and not toDestination()
+// Reverb time initiated to 100 seconds
+let reverb = new Tone.Reverb(100).toMaster();
 
 reverb.generate();
 
 // Envelope used for all synthesizers
 let synthEnvelope = {
-    attack: 10,
+    attack: 2,
     decay: 0,
     sustain: 0.1,
     release: 5
 }
+
+// Set the time delay between when the user's mouse leaves a square
+// and the triggerRelease message is sent
+let releaseDelay = "+1.5"
 
 let blueSquare = new Tone.Synth({
     waveform: "sine",
@@ -24,8 +29,6 @@ let greenSquare = new Tone.Synth({
     volume: 0.1, 
     envelope: synthEnvelope
 }).connect(reverb);
-    //toDestination();
-    //connect(reverb);
 
 let redSquare = new Tone.Synth({
     frequency: 300, 
@@ -33,8 +36,6 @@ let redSquare = new Tone.Synth({
     volume: 0.1,
     envelope: synthEnvelope
 }).connect(reverb);
-    //toDestination();
-    //connect(reverb);
 
 let yellowSquare = new Tone.Synth({
     frequency: 337, 
@@ -42,55 +43,46 @@ let yellowSquare = new Tone.Synth({
     volume: 0.05,
     envelope: synthEnvelope
 }).connect(reverb);
-    //toDestination();
-    //connect(reverb);
 
 function playBlueSquare() {
-    //blueSquare.start();
-    //blueSquare.triggerAttackRelease("G2", "4n");
     blueSquare.triggerAttack("G2");
     console.log("blue start");
 }
 
 function playGreenSquare() {
-    //greenSquare.start();
     greenSquare.triggerAttack("D3");
     console.log("green start");
 }
 
 function playRedSquare() {
-    //redSquare.start();
     redSquare.triggerAttack("B3");
     console.log("red start");
 }
 
 function playYellowSquare() {
-    //yellowSquare.start();
     yellowSquare.triggerAttack("F4");
     console.log("yellow start");
 }
 
 function stopBlueSquare() {
-    blueSquare.triggerRelease();
-    //blueSquare.stop();
+    blueSquare.triggerRelease(releaseDelay);
     console.log("blue stop");
 }
 
 function stopGreenSquare() {
-    //greenSquare.stop();
-    greenSquare.triggerRelease();
+    greenSquare.triggerRelease(releaseDelay);
     console.log("green stop");
 }
 
 function stopRedSquare() {
-    //redSquare.stop();
-    redSquare.triggerRelease();
+    redSquare.triggerRelease(releaseDelay);
     console.log("red stop");
 }
 
 function stopYellowSquare() {
     //yellowSquare.stop();
-    yellowSquare.triggerRelease();
+    setTimeout
+    yellowSquare.triggerRelease(releaseDelay);
     console.log("yellow stop");
 }
 
