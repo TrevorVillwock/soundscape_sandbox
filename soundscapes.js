@@ -1,31 +1,28 @@
-let reverb = new Tone.Reverb(100).toMaster();
+// For some reason the Tone.Reverb object has toMaster() instead of toDestination()
+let reverb = new Tone.Reverb().toMaster();
 
 reverb.generate();
+
+// Envelope used for all synthesizers
+let synthEnvelope = {
+    attack: 10,
+    decay: 0,
+    sustain: 0.1,
+    release: 5
+}
 
 let blueSquare = new Tone.Synth({
     waveform: "sine",
     frequency: 200, 
     volume: 0.5,
-    envelope: {
-        attack: 2,
-        decay: 0,
-        sustain: 0.1,
-        release: 2
-    }
+    envelope: synthEnvelope
 }).connect(reverb);
-    //toDestination();
-    //;
 
 let greenSquare = new Tone.Synth({
     frequency: 250, 
     waveform: "sine",
     volume: 0.1, 
-    envelope: {
-        attack: 2,
-        decay: 0,
-        sustain: 0.1,
-        release: 2
-    }
+    envelope: synthEnvelope
 }).connect(reverb);
     //toDestination();
     //connect(reverb);
@@ -34,12 +31,7 @@ let redSquare = new Tone.Synth({
     frequency: 300, 
     waveform: "sine",
     volume: 0.1,
-    envelope: {
-        attack: 2,
-        decay: 0,
-        sustain: 0.1,
-        release: 2
-    }
+    envelope: synthEnvelope
 }).connect(reverb);
     //toDestination();
     //connect(reverb);
@@ -48,12 +40,7 @@ let yellowSquare = new Tone.Synth({
     frequency: 337, 
     waveform: "sine",
     volume: 0.05,
-    envelope: {
-        attack: 2,
-        decay: 0,
-        sustain: 0.1,
-        release: 2
-    }
+    envelope: synthEnvelope
 }).connect(reverb);
     //toDestination();
     //connect(reverb);
