@@ -1,0 +1,24 @@
+.blue-square {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(161, 224, 232);
+}
+
+.green-square {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(165, 232, 161);
+}
+
+.red-square {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(232, 161, 161);
+}
+
+.yellow-square {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(226, 232, 161);
+}
+
