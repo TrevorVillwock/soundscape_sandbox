@@ -19,28 +19,28 @@ let releaseDelay = "+1.5"
 let blueSquare = new Tone.Synth({
     waveform: "sine",
     frequency: 200, 
-    volume: 0.5,
+    volume: 0.25,
     envelope: synthEnvelope
 }).connect(reverb);
 
 let greenSquare = new Tone.Synth({
     frequency: 250, 
     waveform: "sine",
-    volume: 0.1, 
+    volume: 0.05, 
     envelope: synthEnvelope
 }).connect(reverb);
 
 let redSquare = new Tone.Synth({
     frequency: 300, 
     waveform: "sine",
-    volume: 0.1,
+    volume: 0.05,
     envelope: synthEnvelope
 }).connect(reverb);
 
 let yellowSquare = new Tone.Synth({
     frequency: 337, 
     waveform: "sine",
-    volume: 0.05,
+    volume: 0.025,
     envelope: synthEnvelope
 }).connect(reverb);
 
@@ -80,7 +80,6 @@ function stopRedSquare() {
 }
 
 function stopYellowSquare() {
-    //yellowSquare.stop();
     setTimeout
     yellowSquare.triggerRelease(releaseDelay);
     console.log("yellow stop");
