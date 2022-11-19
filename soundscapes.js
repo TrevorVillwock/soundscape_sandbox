@@ -1,14 +1,27 @@
+// Get necessary elements from html
+//let modal = document.getElementsByClassName("modal")[0];
+let modal = document.getElementById("myModal");
+console.log("modal:")
+console.log(modal)
+let startButton = document.getElementById("startBtn");
+// let span = document.getElementsByClassName("close")[0];
+let span = document.getElementById("theSpan");
+console.log("span:")
+console.log(span)
+let volSlider = document.getElementById("volumeSlider");
+let vol = new Tone.Volume(-25).toDestination();
+
 // For some reason the Tone.Reverb object only has toMaster() and not toDestination()
 // Reverb time initiated to 100 seconds
-let reverb = new Tone.Reverb(100).toMaster();
+let reverb = new Tone.Reverb(100).connect(vol);
 
 reverb.generate();
 
-// Envelope used for all synthesizers
+// ADSR Envelope used for all synthesizers
 let synthEnvelope = {
-    attack: 2,
-    decay: 0,
-    sustain: 0.1,
+    attack: 2, // seconds
+    decay: 0, // seconds
+    sustain: 0.1, // volume
     release: 5
 }
 
@@ -83,6 +96,27 @@ function stopYellowSquare() {
     setTimeout
     yellowSquare.triggerRelease(releaseDelay);
     console.log("yellow stop");
+}
+
+function setVolume() {
+    
+    /************************************************************
+    The html slider gives us values 0-200, which we map
+    to be between -100 and 0 dB because that's what the
+    Tone.js Volume object expects.
+    For an explanation of how decibels work check out this page:
+    https://ehomerecordingstudio.com/decibels/
+    *************************************************************/ 
+  
+    // log2(0) is undefined and will throw an error since there's no power of 2 that equals zero.
+    if (volSlider.value != 0) {
+      vol.volume.value = -1 * (100 - 13 * Math.log2(volSlider.value));
+    }
+}
+
+function closeModal() {
+    console.log("closing modal");
+    modal.style.display="none";
 }
 
 window.onload = () => {
