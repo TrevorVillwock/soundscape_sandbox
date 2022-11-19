@@ -1,15 +1,20 @@
 // Get necessary elements from html
 //let modal = document.getElementsByClassName("modal")[0];
-let modal = document.getElementById("myModal");
-console.log("modal:")
-console.log(modal)
-let startButton = document.getElementById("startBtn");
-// let span = document.getElementsByClassName("close")[0];
-let span = document.getElementById("theSpan");
-console.log("span:")
-console.log(span)
-let volSlider = document.getElementById("volumeSlider");
-let vol = new Tone.Volume(-25).toDestination();
+let startButton;
+let volSlider;
+let vol;
+let span;
+
+document.addEventListener("DOMContentLoaded", () => {
+    startButton = document.getElementById("startBtn");
+    span = document.getElementById("theSpan");
+    console.log("span:")
+    console.log(span)
+    volSlider = document.getElementById("volumeSlider");
+    vol = new Tone.Volume(-25).toDestination();
+    Tone.start();
+    Tone.Transport.start();
+});
 
 // For some reason the Tone.Reverb object only has toMaster() and not toDestination()
 // Reverb time initiated to 100 seconds
@@ -115,11 +120,9 @@ function setVolume() {
 }
 
 function closeModal() {
+    let modal = document.getElementById("myModal");
+    console.log("modal:")
+    console.log(modal)
     console.log("closing modal");
     modal.style.display="none";
-}
-
-window.onload = () => {
-    Tone.start();
-    Tone.Transport.start();
 }
