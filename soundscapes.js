@@ -4,6 +4,11 @@ let startButton;
 let volSlider;
 let vol;
 let span;
+let reverb;
+let blueSquare;
+let greenSquare;
+let redSquare;
+let yellowSquare;
 
 document.addEventListener("DOMContentLoaded", () => {
     startButton = document.getElementById("startBtn");
@@ -12,15 +17,43 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(span)
     volSlider = document.getElementById("volumeSlider");
     vol = new Tone.Volume(-25).toDestination();
+    // For some reason the Tone.Reverb object only has toMaster() and not toDestination()
+    // Reverb time initiated to 100 seconds
+    let reverb = new Tone.Reverb(100).connect(vol);
+    reverb.generate();
+
+    blueSquare = new Tone.Synth({
+        waveform: "sine",
+        frequency: 200, 
+        volume: 0.25,
+        envelope: synthEnvelope
+    }).connect(reverb);
+    
+    greenSquare = new Tone.Synth({
+        frequency: 250, 
+        waveform: "sine",
+        volume: 0.05, 
+        envelope: synthEnvelope
+    }).connect(reverb);
+    
+    redSquare = new Tone.Synth({
+        frequency: 300, 
+        waveform: "sine",
+        volume: 0.05,
+        envelope: synthEnvelope
+    }).connect(reverb);
+    
+    yellowSquare = new Tone.Synth({
+        frequency: 337, 
+        waveform: "sine",
+        volume: 0.025,
+        envelope: synthEnvelope
+    }).connect(reverb);
     Tone.start();
     Tone.Transport.start();
 });
 
-// For some reason the Tone.Reverb object only has toMaster() and not toDestination()
-// Reverb time initiated to 100 seconds
-let reverb = new Tone.Reverb(100).connect(vol);
 
-reverb.generate();
 
 // ADSR Envelope used for all synthesizers
 let synthEnvelope = {
@@ -33,34 +66,6 @@ let synthEnvelope = {
 // Set the time delay between when the user's mouse leaves a square
 // and the triggerRelease message is sent
 let releaseDelay = "+1.5"
-
-let blueSquare = new Tone.Synth({
-    waveform: "sine",
-    frequency: 200, 
-    volume: 0.25,
-    envelope: synthEnvelope
-}).connect(reverb);
-
-let greenSquare = new Tone.Synth({
-    frequency: 250, 
-    waveform: "sine",
-    volume: 0.05, 
-    envelope: synthEnvelope
-}).connect(reverb);
-
-let redSquare = new Tone.Synth({
-    frequency: 300, 
-    waveform: "sine",
-    volume: 0.05,
-    envelope: synthEnvelope
-}).connect(reverb);
-
-let yellowSquare = new Tone.Synth({
-    frequency: 337, 
-    waveform: "sine",
-    volume: 0.025,
-    envelope: synthEnvelope
-}).connect(reverb);
 
 function playBlueSquare() {
     blueSquare.triggerAttack("G2");
