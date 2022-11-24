@@ -14,20 +14,23 @@
         <link href="./style.css" rel="stylesheet">
     </head>
     <body>
-        <button id="startButton" onclick="closeModal()" style="display:block">Start</button>
-        <div id="myModal" class="modal" style="display:block">
+        <!--<button id="startButton" onclick="closeModal()" style="display:block">Start</button>-->
+        <div id="popup" class="modal" style="display:block">
             <div class="modal-content">
-                <span id="theSpan" thePclass="close" onclick="closeModal()">&times;</span>
+                <span id="theSpan" class="close" onclick="closeModal()">&times;</span>
                 <p>Start</p>
             </div>
         </div>
-        <div class="blue-square" onmouseover="playBlueSquare()" onmouseleave="stopBlueSquare()"></div>
-        <div class="green-square" onmouseover="playGreenSquare()" onmouseleave="stopGreenSquare()"></div>
-        <div class="red-square" onmouseover="playRedSquare()" onmouseleave="stopRedSquare()"></div>
-        <div class="yellow-square" onmouseover="playYellowSquare()" onmouseleave="stopYellowSquare()"></div>
-        <div class="volume-bar">
+        <div id="square-1" class="square" onmouseover="playSquare1()" onmouseleave="stopSquare1()"></div>
+        <div id="square-2" class="square" onmouseover="playSquare2()" onmouseleave="stopSquare2()"></div>
+        <div id="square-3" class="square" onmouseover="playSquare3()" onmouseleave="stopSquare3()"></div>
+        <div id="square-4" class="square" onmouseover="playSquare4()" onmouseleave="stopSquare4()"></div>
+        <div id="square-5" class="square" onmouseover="playSquare5()" onmouseleave="stopSquare5()"></div>
+        <div id="square-6" class="square" onmouseover="playSquare6()" onmouseleave="stopSquare6()"></div>
+        <div id="square-7" class="square" onmouseover="playSquare7()" onmouseleave="stopSquare7()"></div>
+        <div id="square-8" class="square" onmouseover="playSquare8()" onmouseleave="stopSquare8()"></div>
+        <div id="volume-bar">
             <input type="range" min="0" max="200" value="100" id="volumeSlider" oninput="setVolume()">
         </div>
-        -->
     </body>
 </html>
