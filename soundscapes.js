@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         oscillator: {
             type: "sine",
             volume: -5,
+            frequency: 200
         },
         envelope: synthEnvelope
     }).connect(reverb),
@@ -83,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -15,
+                frequency: 300
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -15,
+                frequency: 400
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -122,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -20,
+
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -180,22 +184,22 @@ let releaseDelay = "+0.5"
 function playSquare1() {
     console.log("playing square 1");
     currentSquare = square1;
-    square1.synth.triggerAttack(200);
+    square1.synth.triggerAttack(square1.synth.frequency.value);
 }
 
 function playSquare2() {
     currentSquare = square2;
-    square2.synth.triggerAttack(300);
+    square2.synth.triggerAttack(square2.synth.frequency.value);
 }
 
 function playSquare3() {
     currentSquare = square3;
-    square3.synth.triggerAttack(400);
+    square3.synth.triggerAttack(square3.synth.frequency.value);
 }
 
 function playSquare4() {
     currentSquare = square4;
-    square4.synth.triggerAttack(500);
+    square4.synth.triggerAttack(square4.synth.frequency.value);
 }
 
 function playSquare5() {
