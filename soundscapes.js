@@ -8,6 +8,7 @@ let blueSquare;
 let greenSquare;
 let redSquare;
 let yellowSquare;
+let currentSquare; // Holds square object mouse is currently hovering over
 
 // Attack Decay Sustain Release (ADSR) Envelope used for all synthesizers
 let synthEnvelope = {
@@ -19,6 +20,24 @@ let synthEnvelope = {
     release: 5 // seconds it takes for the sound to fade out once the mouse leaves
                // the square
 };
+
+// boolean variable determining whether mouse movement within the square affects pitch
+let controlPitch = false;
+
+document.onkeydown = (event) => {
+    console.log(event);
+    if (event.key == "Shift") controlPitch = !controlPitch;
+    console.log(controlPitch);
+}
+
+document.onmousemove = (event) => {
+    console.log("horizontal position: " + event.clientX);
+    console.log("vertical position: " + event.clientY);
+    if (controlPitch) {
+        currentSquare.synth.frequency.value = currentSquare.baseFrequency - (event.clientY - currentSquare.top);
+    }
+    //currentSquare.synth.frequency.value = currentSquare.baseFrequency - (event.clientY - currentSquare.top);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     // Get necessary elements from html once page is loaded
@@ -46,69 +65,109 @@ document.addEventListener("DOMContentLoaded", () => {
     More explanation:
     https://www.quora.com/Why-are-higher-frequency-sounds-louder-than-lower-frequency-sounds
     */
-    square1 = new Tone.Synth({
+    square1 = {
+        synth: new Tone.Synth({
         oscillator: {
             type: "sine",
-            volume: -10,
+            volume: -5,
         },
         envelope: synthEnvelope
-    }).connect(reverb);
+    }).connect(reverb),
+        baseFrequency: 200,
+        top: 0,
+        left: 0,
+    }
     
-    square2 = new Tone.Synth({
-        oscillator: {
-            type: "sine",
-            volume: -15,
-        },
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square2 = {
+        synth: new Tone.Synth({
+            oscillator: {
+                type: "sine",
+                volume: -15,
+            },
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 300,
+        top: 0,
+        left: 250
+    }
     
-    square3 = new Tone.Synth({
-        oscillator: {
-            type: "sine",
-            volume: -15,
-        },
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square3 = {
+        synth: new Tone.Synth({
+            oscillator: {
+                type: "sine",
+                volume: -15,
+            },
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 400,
+        top: 0,
+        left: 500
+    }
     
-    square4 = new Tone.Synth({
-        oscillator: {
-            type: "sine",
-            volume: -20,
-        },
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square4 = {
+        synth: new Tone.Synth({
+            oscillator: {
+                type: "sine",
+                volume: -20,
+            },
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 500,
+        top: 0,
+        left: 750
+    }
 
-    square5 = new Tone.Synth({
-        oscillator: {
-            type: "sine",
-            volume: -20,
-        },
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square5 = {
+        synth: new Tone.Synth({
+            oscillator: {
+                type: "sine",
+                volume: -20,
+            },
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 600,
+        top: 250,
+        left: 0
+    }
     
-    square6 = new Tone.Synth({ 
-        oscillator: {
-            type: "sine",
-            volume: -20,
-        }, 
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square6 = {
+        synth: new Tone.Synth({ 
+            oscillator: {
+                type: "sine",
+                volume: -20,
+            }, 
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 700,
+        top: 250,
+        left: 250
+    }
     
-    square7 = new Tone.Synth({
-        oscillator: {
-            type: "sine",
-            volume: -20,
-        },
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square7 = {
+        synth: new Tone.Synth({
+            oscillator: {
+                type: "sine",
+                volume: -20,
+            },
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 800,
+        top: 250,
+        left: 500
+    }
     
-    square8 = new Tone.Synth({
-        oscillator: {
-            type: "sine",
-            volume: -20,
-        },
-        envelope: synthEnvelope
-    }).connect(reverb);
+    square8 = {
+        synth: new Tone.Synth({
+            oscillator: {
+                type: "sine",
+                volume: -20,
+            },
+            envelope: synthEnvelope
+        }).connect(reverb),
+        baseFrequency: 900,
+        top: 250,
+        left: 750
+    }
 
     Tone.start();
     Tone.Transport.start();
@@ -116,75 +175,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Set the time delay between when the user's mouse leaves a square
 // and the triggerRelease message is sent
-let releaseDelay = "+1.5"
+let releaseDelay = "+0.5"
 
 function playSquare1() {
     console.log("playing square 1");
-    square1.triggerAttack(200);
+    currentSquare = square1;
+    square1.synth.triggerAttack(200);
 }
 
 function playSquare2() {
-    square2.triggerAttack(300);
+    currentSquare = square2;
+    square2.synth.triggerAttack(300);
 }
 
 function playSquare3() {
-    square3.triggerAttack(400);
+    currentSquare = square3;
+    square3.synth.triggerAttack(400);
 }
 
 function playSquare4() {
-    square4.triggerAttack(500);
+    currentSquare = square4;
+    square4.synth.triggerAttack(500);
 }
 
 function playSquare5() {
-    //square5.triggerAttack(square5.frequency.value);
-    square5.triggerAttack(600);
-    console.log(`square5.frequency.value: ${square5.frequency.value}`);
+    currentSquare = square5;
+    square5.synth.triggerAttack(600);
 }
 
 function playSquare6() {
-    square6.triggerAttack(700);
-    console.log(`square6.frequency.value: ${square6.frequency.value}`);
+    currentSquare = square6;
+    square6.synth.triggerAttack(700);
 }
 
 function playSquare7() {
-    square7.triggerAttack(800);
-    console.log(`square7.frequency.value: ${square7.frequency.value}`);
+    currentSquare = square7;
+    square7.synth.triggerAttack(800);
 }
 
 function playSquare8() {
-    square8.triggerAttack(900);
+    currentSquare = square8;
+    square8.synth.triggerAttack(900);
 }
 
 function stopSquare1() {
-    square1.triggerRelease(releaseDelay);
+    square1.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare2() {
-    square2.triggerRelease(releaseDelay);
+    square2.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare3() {
-    square3.triggerRelease(releaseDelay);
+    square3.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare4() {
-    square4.triggerRelease(releaseDelay);
+    square4.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare5() {
-    square5.triggerRelease(releaseDelay);
+    square5.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare6() {
-    square6.triggerRelease(releaseDelay);
+    square6.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare7() {
-    square7.triggerRelease(releaseDelay);
+    square7.synth.triggerRelease(releaseDelay);
 }
 
 function stopSquare8() {
-    square8.triggerRelease(releaseDelay);
+    square8.synth.triggerRelease(releaseDelay);
 }
 
 function setVolume() {
@@ -200,7 +263,7 @@ function setVolume() {
   
     // log2(0) is undefined and will throw an error since there's no power of 2 that equals zero.
     if (volSlider.value != 0) {
-      vol.volume.value = -1 * (100 - 13 * Math.log2(volSlider.value)) - 40;
+      vol.volume.value = -1 * (100 - 13 * Math.log2(volSlider.value)) - 20;
       console.log(vol.volume.value);
     }
 }
