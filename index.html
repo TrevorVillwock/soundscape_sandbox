@@ -16,9 +16,8 @@
     <body>
         <!--<button id="startButton" onclick="closeModal()" style="display:block">Start</button>-->
         <div id="popup" class="modal" style="display:block">
-            <div class="modal-content">
-                <span id="theSpan" class="close" onclick="closeModal()">&times;</span>
-                <p>Close this box to begin</p>
+            <div id="modal-content">
+                <span id="start-box" class="close" onclick="closeModal()">Click to Start</span>
             </div>
         </div>
         <div id="square-1" class="square" onmouseover="playSquare1()" onmouseleave="stopSquare1()"></div>
@@ -29,8 +28,9 @@
         <div id="square-6" class="square" onmouseover="playSquare6()" onmouseleave="stopSquare6()"></div>
         <div id="square-7" class="square" onmouseover="playSquare7()" onmouseleave="stopSquare7()"></div>
         <div id="square-8" class="square" onmouseover="playSquare8()" onmouseleave="stopSquare8()"></div>
-        <div id="volume-bar">
-            <p>Press the shift key to control each square's pitch by moving vertically</p>
+        <div id="controls">
+            <p>Hover over a square to hear sine waves of various pitches with copious amounts of reverb.</p>
+            <p>Press the shift key to control each square's pitch by moving vertically.</p>
             <p>Volume</p>
             <input type="range" min="0" max="200" value="0" id="volumeSlider" oninput="setVolume()">
         </div>

@@ -21,7 +21,7 @@ let synthEnvelope = {
                // the square
 };
 
-// boolean variable determining whether mouse movement within the square affects pitch
+// Boolean flag determining whether mouse movement within the square affects pitch
 let controlPitch = false;
 
 document.onkeydown = (event) => {
@@ -34,9 +34,8 @@ document.onmousemove = (event) => {
     console.log("horizontal position: " + event.clientX);
     console.log("vertical position: " + event.clientY);
     if (controlPitch) {
-        currentSquare.synth.frequency.value = currentSquare.baseFrequency - (event.clientY - currentSquare.top);
+        currentSquare.synth.frequency.value = currentSquare.baseFrequency - (event.clientY - currentSquare.top) / 2;
     }
-    //currentSquare.synth.frequency.value = currentSquare.baseFrequency - (event.clientY - currentSquare.top);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -112,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -20,
+                frequency: 500
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -20,
-
+                frequency: 600
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -139,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -20,
+                frequency: 700
             }, 
             envelope: synthEnvelope
         }).connect(reverb),
@@ -152,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -20,
+                frequency: 800
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -165,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
             oscillator: {
                 type: "sine",
                 volume: -20,
+                frequency: 900
             },
             envelope: synthEnvelope
         }).connect(reverb),
@@ -204,22 +207,22 @@ function playSquare4() {
 
 function playSquare5() {
     currentSquare = square5;
-    square5.synth.triggerAttack(600);
+    square5.synth.triggerAttack(square5.synth.frequency.value);
 }
 
 function playSquare6() {
     currentSquare = square6;
-    square6.synth.triggerAttack(700);
+    square6.synth.triggerAttack(square6.synth.frequency.value);
 }
 
 function playSquare7() {
     currentSquare = square7;
-    square7.synth.triggerAttack(800);
+    square7.synth.triggerAttack(square7.synth.frequency.value);
 }
 
 function playSquare8() {
     currentSquare = square8;
-    square8.synth.triggerAttack(900);
+    square8.synth.triggerAttack(square8.synth.frequency.value);
 }
 
 function stopSquare1() {
